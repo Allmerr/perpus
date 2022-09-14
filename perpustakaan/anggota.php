@@ -39,6 +39,9 @@ if(isset($_POST['submit'])){
                     <li class="nav-item">
                         <a class="nav-link" href="buku.php">Tambah Buku</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pinjamBuku.php">Pinjam Buku</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -67,7 +70,7 @@ if(isset($_POST['submit'])){
                 <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
                 <input type="text" class="form-control" id="tgl_lahir" name="tgl_lahir">
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Tambah Anggota</button>
             <br>
         </form>
     </div>

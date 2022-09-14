@@ -42,6 +42,9 @@ if(isset($_POST['submit'])){
                     <li class="nav-item">
                         <a class="nav-link" href="buku.php">Tambah Buku</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pinjamBuku.php">Pinjam Buku</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -78,7 +81,7 @@ if(isset($_POST['submit'])){
                     <option value="dipinjam">Dipijam</option>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Tambah Buku</button>
             <br>
         </form>
     </div>

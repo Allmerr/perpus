@@ -38,6 +38,9 @@ $data_buku = query("SELECT * FROM `tb_buku`");
                     <li class="nav-item">
                         <a class="nav-link" href="buku.php">Tambah Buku</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pinjamBuku.php">Pinjam Buku</a>
+                    </li>
                 </ul>
             </div>
         </div>

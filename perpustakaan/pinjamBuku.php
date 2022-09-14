@@ -1,21 +1,15 @@
 <?php
 
-require 'function/function.php';
-
-if(!isset($_GET['no_buku'])){
-    echo"<script>alert('link gagal');</script>";
-    header("Location: index.php");
-}else{
-    $no_buku = $_GET['no_buku'];
-    $data = query("SELECT * FROM `tb_buku` WHERE no_buku = '$no_buku'")[0]; 
-}
+require "function/function.php";
 
 if(isset($_POST['submit'])){
-    if(updateBuku($_POST) > 0){
-        echo"<script>alert('Berhasil Update');</script>";
+    if(pinjamBuku($_POST) > 0){
+        echo"<script>alert('Data berhasil ditambahkan!');</script>";
         header("Location: index.php");
     }
 }
+
+
 
 
 ?>
@@ -58,46 +52,33 @@ if(isset($_POST['submit'])){
         </div>
     </nav>
     <!-- akhir navbar -->
-    <!-- awal form -->
     <div class="container">
-        <h1 class="text-center my-3">Update Buku</h1>
+        <h1 class="text-center my-3">Pinjam Buku</h1>
         <form class="border p-3 mb-5" action="" method="post">
-            <input type="hidden" name="no_buku" value="<?= $data['no_buku']?>">
             <div class="mb-3">
-                <label for="judul" class="form-label">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul" value="<?= $data['judul']?>">
-            </div>
-            <div class="mb-3">
-                <label for="pengarang" class="form-label">Pengarang</label>
-                <input type="text" class="form-control" id="pengarang" name="pengarang"
-                    value="<?= $data['pengarang']?>">
-            </div>
-            <div class="mb-3">
-                <label for="th_terbit" class="form-label">Tahun Terbit</label>
-                <input type="text" class="form-control" id="th_terbit" name="th_terbit"
-                    value="<?= $data['th_terbit']?>">
-            </div>
-            <div class="mb-3">
-                <label for="jenis_buku" class="form-label">Jenis Buku</label>
-                <select class="form-select" aria-label="Default select example" name="jenis_buku"">
-                    <option selected>Pilih Jenis Buku</option>
-                    <option value=" fiksi">Fiksi</option>
-                    <option value="non-fiksi">Non-Fiksi</option>
+                <label for="id_anggota" class="form-label">Anggota Peminjam</label>
+                <select name="id_anggota" id="id_anggota" class="form-select">
+                    <?php $data =  query("SELECT * FROM tb_anggota"); ?>
+                    <?php foreach($data as $anggota ) :?>
+                    <option value="<?= $anggota["id_anggota"]?>"><?= $anggota["nama"]?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="">Status Buku</label>
-                <select class="form-select" aria-label="Default select example" name="status" required>
-                    <option selected>Pilih Status Buku</option>
-                    <option value="tersedia">Tersedia</option>
-                    <option value="dipinjam">Dipijam</option>
+                <label for="no_buku" class="form-label">Buku Tersedia</label>
+                <select name="no_buku" id="no_buku" class="form-select">
+                    <?php $data =  query("SELECT * FROM tb_buku"); ?>
+                    <?php foreach($data as $buku ) :?>
+                    <?php if($buku["status"] == "tersedia") : ?>
+                    <option value="<?= $buku["no_buku"]?>"><?= $buku["judul"]?></option>
+                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+            <button type="submit" class="btn btn-primary" name="submit">Pinjam Buku</button>
             <br>
         </form>
     </div>
-    <!-- akhir form -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script>

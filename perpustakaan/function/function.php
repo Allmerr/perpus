@@ -105,3 +105,16 @@ function updateBuku($data){
 
     return mysqli_affected_rows($conn);   
 }
+
+function pinjamBuku($data){
+    global $conn;
+
+    $id_anggota = $data['id_anggota'];
+    $no_buku = $data['no_buku'];
+    $date_now = date('d-M-y');
+    $date_then = date('d-M-y', strtotime($Today. ' + 7 days'));
+
+    mysqli_query($conn, "INSERT INTO `tb_pinjam` (`no_pinjam`, `id_anggota`, `no_buku`, `tgl_pinjam`, `tgl_kembali`) VALUES (NULL, '$id_anggota', '$no_buku', '$date_now', '$date_then')");
+
+    return mysqli_affected_rows($conn);
+}
